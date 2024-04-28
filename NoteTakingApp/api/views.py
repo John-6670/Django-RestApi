@@ -1,4 +1,5 @@
-from rest_framework import generics
+from rest_framework import generics, status
+from rest_framework.response import Response
 from .serializers import NoteSerializers
 from .models import Note
 from rest_framework.permissions import IsAuthenticated, AllowAny
@@ -7,7 +8,6 @@ from rest_framework.permissions import IsAuthenticated, AllowAny
 # Create your views here.
 class NoteListCreate(generics.ListCreateAPIView):
     serializer_class = NoteSerializers
-    permission_classes = [IsAuthenticated]
 
     def get_queryset(self):
         user = self.request.user
@@ -18,11 +18,17 @@ class NoteListCreate(generics.ListCreateAPIView):
         if serializer.is_valid():
             serializer.save(author=user)
 
+    def delete(self, request, *args, **kwargs):
+        self.get_queryset().delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
+
 
 class NoteRetrieveUpdateDestroy(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Note.objects.all()
     serializer_class = NoteSerializers
-    permission_classes = [IsAuthenticated]
+    lookup_field = 'id'
 
-    def get_object(self, id):
+    def get_queryset(self):
         user = self.request.user
-        return Note.objects.filter(author=user, id=id)
+        return Note.objects.filter(author=user)
+    
