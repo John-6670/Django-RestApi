@@ -59,3 +59,10 @@ class NoteRetrieveUpdateDestroy(generics.RetrieveUpdateDestroyAPIView):
             raise PermissionDenied("You do not have permission to edit this note.")
         
         return super().partial_update(request, *args, **kwargs)
+    
+    def delete(self, request, *args, **kwargs):
+        note = self.get_object()
+        if note.author != request.user:
+            raise PermissionDenied("You do not have permission to delete this note.")
+        
+        return super().delete(request, *args, **kwargs)
