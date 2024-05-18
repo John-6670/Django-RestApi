@@ -2,9 +2,9 @@
  
 ### Description
 
-This project provides a user-friendly RESTful API for managing your notes, complete with a graphical interface built using Django REST Framework's browsable API. Perfect for creating personal note-taking applications or integrating notes into other projects.
+This project provides a user-friendly RESTful API for managing your notes, complete with a graphical interface built using Django REST Framework's brows able API. Perfect for creating personal note-taking applications or integrating notes into other projects.
 
-## Instalation
+## Installation
 
 1. **Clone the Repository:**
 ```
@@ -31,17 +31,17 @@ This will typically run the server at http://127.0.0.1:8000/.
 
 ## Usage
 **Graphical Interface:**
-The Django REST Framework browsable API allows you to explore and interact with your API endpoints directly from your web browser. Navigate to http://127.0.0.1:8000/ in your browser after running the development server with debug=True. You'll see a user-friendly interface for listing, creating, retrieving, updating, and deleting notes.
+The Django REST Framework brows able API allows you to explore and interact with your API endpoints directly from your web browser. Navigate to http://127.0.0.1:8000/ in your browser after running the development server with debug=True. You'll see a user-friendly interface for listing, creating, retrieving, updating, and deleting notes.
 
 **Making Requests:**
 Use an HTTP client or REST client tool to interact with the API endpoints. Authentication is not included in this basic example, but you can implement it for production use.
 
 | Method | URL Path | Description |
 | :--: | :--: | :--: |
-| GET | `/api/notes` | Retrieves all notes belonging to the current user |
+| GET | `/api/notes` | Retrieves all notes belonging to the current user or shared with |
 | POST | `/api/notes` | Creates a new note for the current user |
 | DELETE | `api/notes` | Deletes all notes belonging to the current user |
-| GET | `/api/notes/<int:id>` | Retrieves a specific note by its ID (belonging to the current user) |
+| GET | `/api/notes/<int:id>` | Retrieves a specific note by its ID (belonging to the current user or shared with) |
 | PUT | `/api/notes/<int:id>` | Updates an existing note by its ID (belonging to the current user) |
 | DELETE | `/api/notes/<int:id>` | Deletes a specific note by its ID (belonging to the current user) |
 
